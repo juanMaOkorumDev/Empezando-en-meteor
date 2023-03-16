@@ -1,0 +1,61 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "allowJs": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "/*": [
+        "./*"
+      ],
+      "meteor/mongo": [
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/local_collection_driver.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/collection.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/connection_options.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/doc_fetcher.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/mongo_driver.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/mongo_utils.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/observe_multiplex.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/oplog_observe_driver.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/oplog_tailing.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/oplog_v2_converter.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/polling_observe_driver.js",
+        "/home/devokorum/.meteor/packages/mongo/1.16.5/web.browser/remote_collection_driver.js"
+      ],
+      "meteor/reactive-var": [
+        "/home/devokorum/.meteor/packages/reactive-var/1.0.12/web.browser/reactive-var.js"
+      ],
+      "meteor/es5-shim": [
+        "/home/devokorum/.meteor/packages/es5-shim/4.8.0/web.browser/client.js",
+        "/home/devokorum/.meteor/packages/es5-shim/4.8.0/web.browser/console.js",
+        "/home/devokorum/.meteor/packages/es5-shim/4.8.0/web.browser/cordova.js",
+        "/home/devokorum/.meteor/packages/es5-shim/4.8.0/web.browser/export_globals.js",
+        "/home/devokorum/.meteor/packages/es5-shim/4.8.0/web.browser/import_globals.js"
+      ],
+      "meteor/ecmascript": [
+        "/home/devokorum/.meteor/packages/ecmascript/0.16.6/web.browser/ecmascript.js"
+      ],
+      "meteor/shell-server": [
+        "/home/devokorum/.meteor/packages/shell-server/0.5.0/web.browser/main.js",
+        "/home/devokorum/.meteor/packages/shell-server/0.5.0/web.browser/shell-server.js"
+      ],
+      "meteor/hot-module-replacement": [
+        "/home/devokorum/.meteor/packages/hot-module-replacement/0.5.2/web.browser/hot-api.js",
+        "/home/devokorum/.meteor/packages/hot-module-replacement/0.5.2/web.browser/client.js",
+        "/home/devokorum/.meteor/packages/hot-module-replacement/0.5.2/web.browser/server.js"
+      ],
+      "meteor/react-meteor-data": [
+        "/home/devokorum/.meteor/packages/react-meteor-data/2.6.3/web.browser/index.js"
+      ]
+    }
+  },
+  "typeAcquisition": {
+    "include": [
+      "meteor"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".meteor"
+  ]
+}
