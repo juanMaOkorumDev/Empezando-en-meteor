@@ -1,20 +1,42 @@
 import React from "react";
-import { ContactsCollection } from "../api/ContactsCollection";
+// import { ContactsCollection } from "../api/ContactsCollection";
+import { Meteor } from "meteor/meteor";
+import { ErrorAlert } from "./components/ErrorAlert";
+import { useState } from "react/cjs/react.production.min";
+import { SuccessAlert } from "./components/SuccessAlert";
 
 export const ContactForm = () => {
   const [name, setName] = React.useState(""); // Formik
   const [email, setEmail] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [success, setSuccess] = React.useState("");
 
   const saveContact = () => {
-    ContactsCollection.insert({ name, email, imageUrl });
-    setName("");
-    setEmail("");
-    setImageUrl("");
+    // ContactsCollection.insert({ name, email, imageUrl });
+    Meteor.call("contacts.insert", { name, email, imageUrl }, (e) => {
+      if (e) {
+        setError(e.error);
+        setTimeout(() => {
+          setError("");
+        }, 4000);
+        // console.log(e.error);
+      } else {
+        setName("");
+        setEmail("");
+        setImageUrl("");
+        setSuccess("Contacto guardado con éxito");
+        setTimeout(() => {
+          setSuccess("");
+        }, 4000);
+      }
+    });
   };
 
   return (
     <form className="mt-6">
+      {error && <ErrorAlert message={error} />}
+      {success && <SuccessAlert message={success} />}
       <div className="grid grid-cols-6 gap-6">
         <div className="col-span-6 sm:col-span-6 lg:col-span-2">
           <label
