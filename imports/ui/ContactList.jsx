@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { ContactsCollection } from "../api/ContactsCollection";
 import { Meteor } from "meteor/meteor";
 import { useTracker, useSubscribe, useFind } from "meteor/react-meteor-data";
+import { Loading } from "./components/Loading";
 
 export const ContactList = () => {
   const isLoading = useSubscribe("contacts");
@@ -25,36 +26,19 @@ export const ContactList = () => {
     Meteor.call("contacts.archive", { contactId: _id });
   };
 
-  if (isLoading()) {
-    return (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-6 h-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-        />
-      </svg>
-    );
-  }
-
   const ContactItem = memo(({ contact }) => {
     return (
       <li className="py-4 flex items-center justify-between space-x-3">
         <div className="min-w-0 flex-1 flex items-center space-x-3">
-          <div className="flex-shrink-0">
-            <img
-              className="h-10 w-10 rounded-full"
-              src={contact.imageUrl}
-              alt=""
-            />
-          </div>
+          {contact.imageUrl && (
+            <div className="flex-shrink-0">
+              <img
+                className="h-10 w-10 rounded-full"
+                src={contact.imageUrl}
+                alt=""
+              />
+            </div>
+          )}
           <div className="min-w-0 flex-1">
             <p className="text-sm font-medium text-gray-900 truncate">
               {contact.name}
@@ -114,6 +98,11 @@ export const ContactList = () => {
       </li>
     );
   });
+
+  if (isLoading()) {
+    return;
+    <Loading />;
+  }
 
   return (
     <div>

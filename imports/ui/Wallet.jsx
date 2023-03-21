@@ -1,22 +1,57 @@
 import React, { useState } from "react";
 import { Modal } from "./components/Modal";
+import { SelectContact } from "./components/SelectContact";
+import { ContactsCollection } from "../api/ContactsCollection";
+import { useTracker, useSubscribe, useFind } from "meteor/react-meteor-data";
+import { Loading } from "./components/Loading";
+import { Meteor } from "meteor/meteor";
+import { WalletsCollection } from "../api/WalletCollection";
 
 export const Wallet = () => {
+  const isLoadingContacts = useSubscribe("contacts");
+  const isLoadingWallets = useSubscribe("wallets");
+  // const isLoading = useSubscribe("allContacts");
+  const contacts = useFind(() => {
+    return ContactsCollection.find(
+      { archived: { $ne: true } },
+      { sort: { createdAt: -1 } }
+    );
+  });
+  const [wallet] = useFind(() => {
+    return WalletsCollection.find();
+  });
   const [open, setOpen] = useState(false);
   const [isTransferring, setIsTransferring] = useState(false);
   const [amount, setAmount] = useState(0);
-  const [destinationWallet, setDestinationWallet] = useState("");
+  const [destinationWallet, setDestinationWallet] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
-  const wallet = {
-    _id: "123456",
-    balance: 5000,
-    currency: "COP",
+  const addTransaction = () => {
+    // console.log("nueva transacción", amount, destinationWallet);
+    Meteor.call(
+      "transactions.insert",
+      {
+        isTransferring,
+        sourceWalletId: wallet._id,
+        destinationWalletId: destinationWallet?.walletId || "",
+        amount: Number(amount),
+      },
+      (e) => {
+        if (e) {
+          setErrorMessage(e.error);
+        } else {
+          setOpen(false);
+          setDestinationWallet({});
+          setAmount(0);
+          setErrorMessage("");
+        }
+      }
+    );
   };
 
-  const addTransaction = () => {
-    console.log("nueva transacción", amount, destinationWallet);
-  };
+  if (isLoadingContacts() || isLoadingWallets()) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -41,6 +76,7 @@ export const Wallet = () => {
                 className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                 onClick={() => {
                   setIsTransferring(false);
+                  setErrorMessage("");
                   setOpen(true);
                 }}
               >
@@ -51,6 +87,7 @@ export const Wallet = () => {
                 className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                 onClick={() => {
                   setIsTransferring(true);
+                  setErrorMessage("");
                   setOpen(true);
                 }}
               >
@@ -71,34 +108,28 @@ export const Wallet = () => {
         body={
           <>
             {isTransferring && (
-              <div>
-                <label
-                  htmlFor="destination"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Billetera destino
-                </label>
-                <input
-                  type="text"
-                  id="destination"
-                  value={destinationWallet}
-                  onChange={(e) => setDestinationWallet(e.target.value)}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              <div className="mt-2">
+                <SelectContact
+                  title="Contacto destino"
+                  contacts={contacts}
+                  contact={destinationWallet}
+                  setContact={setDestinationWallet}
                 />
               </div>
             )}
 
-            <div>
+            <div className="mt-2">
               <label
                 htmlFor="amount"
                 className="block text-sm font-medium text-gray-700"
               >
-                Name
+                Amount
               </label>
               <input
                 type="number"
                 id="amount"
                 value={amount}
+                min={0}
                 onChange={(e) => setAmount(e.target.value)}
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="000.00"
