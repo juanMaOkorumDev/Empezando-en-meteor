@@ -5,6 +5,7 @@ import "../imports/api/publications/ContactsPublications";
 import "../imports/api/collections/TransactionsCollections";
 import "../imports/api/methods/TransactionsMethods";
 import "../imports/api/collections/WalletCollection";
+import "../infra/accounts";
 import "../imports/api/publications/WalletsPublications";
 import { WalletsCollection } from "../imports/api/collections/WalletCollection";
 

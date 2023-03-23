@@ -19,7 +19,11 @@ export const Header = () => {
                 className="cursor-pointer"
               >
                 <span className="sr-only">Meteor Wallet</span>
-                <img className="h-10 w-auto" src="/images/logo.png" alt="" />
+                <img
+                  className="h-10 w-auto"
+                  src="https://lh4.googleusercontent.com/WHMQ1rK5NzpgIZe9Pvy_VgngvNHLf8VaJ3Eu358o_EARtdQ-038GC6fwB1c3Y8psnrBNig=w16383"
+                  alt=""
+                />
               </a>
             </div>
             <div>
