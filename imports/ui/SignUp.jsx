@@ -103,7 +103,9 @@ export const SignUp = () => {
             onClick={() => setIsSignUp(!isSignUp)}
             className="cursor-pointer text-indigo-600"
           >
-            Si ya posees una cuenta, click aqui
+            {isSignUp
+              ? "Si ya posees una cuenta, click aqui"
+              : "Si no posees una cuenta, click aqui"}
           </a>
         </div>
       </form>
