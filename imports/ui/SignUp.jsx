@@ -108,6 +108,14 @@ export const SignUp = () => {
               : "Si no posees una cuenta, click aqui"}
           </a>
         </div>
+        <div className="py-3">
+          <a
+            onClick={() => navigate(RoutePaths.FORGOT_PASS)}
+            className="cursor-pointer text-indigo-600"
+          >
+            ¿Olvidaste la contraseña?
+          </a>
+        </div>
       </form>
     </div>
   );
