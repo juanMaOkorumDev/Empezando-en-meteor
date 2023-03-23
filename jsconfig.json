@@ -46,6 +46,31 @@
       ],
       "meteor/react-meteor-data": [
         "/home/devokorum/.meteor/packages/react-meteor-data/2.6.3/web.browser/index.js"
+      ],
+      "meteor/aldeed:collection2": [
+        "/home/devokorum/.meteor/packages/aldeed_collection2/3.5.0/web.browser/collection2.js",
+        "/home/devokorum/.meteor/packages/aldeed_collection2/3.5.0/web.browser/lib.js"
+      ],
+      "meteor/matb33:collection-hooks": [
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/client.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/advices.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/collection-hooks.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/find.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/findone.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/insert.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/remove.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/server.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/update.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/upsert.js",
+        "/home/devokorum/.meteor/packages/matb33_collection-hooks/1.2.1/web.browser/users-compat.js"
+      ],
+      "meteor/accounts-password": [
+        "/home/devokorum/.meteor/packages/accounts-password/2.3.4/web.browser/password_client.js",
+        "/home/devokorum/.meteor/packages/accounts-password/2.3.4/web.browser/email_templates.js",
+        "/home/devokorum/.meteor/packages/accounts-password/2.3.4/web.browser/password_server.js"
+      ],
+      "meteor/quave:logged-user-react": [
+        "/home/devokorum/.meteor/packages/quave_logged-user-react/1.0.0/web.browser/logged-user-react.js"
       ]
     }
   },

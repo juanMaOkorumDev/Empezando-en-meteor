@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Modal } from "./components/Modal";
 import { SelectContact } from "./components/SelectContact";
-import { ContactsCollection } from "../api/ContactsCollection";
+import { ContactsCollection } from "../api/collections/ContactsCollection";
 import { useTracker, useSubscribe, useFind } from "meteor/react-meteor-data";
 import { Loading } from "./components/Loading";
+// @ts-ignore
 import { Meteor } from "meteor/meteor";
-import { WalletsCollection } from "../api/WalletCollection";
+import { WalletsCollection } from "../api/collections/WalletCollection";
 
 export const Wallet = () => {
   const isLoadingContacts = useSubscribe("contacts");
