@@ -34,7 +34,7 @@ export const Header = () => {
                     navigate(RoutePaths.SIGN_UP);
                   }}
                 >
-                  Registrarse
+                  Iniciar
                 </button>
               )}
               {!isLoadingLoggedUser && loggedUser && (
